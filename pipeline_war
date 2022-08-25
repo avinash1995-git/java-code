@@ -1,0 +1,18 @@
+pipeline {
+
+    agent any
+
+    stages {
+
+        stage ('Buld') {
+            steps {
+                git branch: 'main', url: 'https://github.com/avinash1995-git/java-code.git'
+            sh '''
+               cd /home/ubuntu/docker_assignment/second/java-code
+               docker build -t warproject . /home/ubuntu/docker_assignment/second/java-code
+               docker run -itd -p 3006:8080 --name warcontainer 
+            '''
+        }
+    }
+    }
+}
